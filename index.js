@@ -18,7 +18,15 @@ app.use(express.json());
 // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.spoqz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+
+//============== My build =========
+
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.4bggrgm.mongodb.net/?retryWrites=true&w=majority`;
+
+
+
+
+// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.spoqz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 console.log(uri)
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
@@ -40,11 +48,12 @@ function verifyJWT(req, res, next) {
 async function run() {
     try {
         await client.connect();
-        const serviceCollection = client.db('doctors_portal').collection('services');
-        const bookingCollection = client.db('doctors_portal').collection('bookings');
-        const userCollection = client.db('doctors_portal').collection('users');
-        const doctorCollection = client.db('doctors_portal').collection('doctors');
-        const paymentCollection = client.db('doctors_portal').collection('payments');
+        const serviceCollection = client.db('parts_manufacturer').collection('services');
+        // const serviceCollection = client.db('doctors_portal').collection('services');
+        const bookingCollection = client.db('parts_manufacturer').collection('bookings');
+        const userCollection = client.db('parts_manufacturer').collection('users');
+        const doctorCollection = client.db('parts_manufacturer').collection('doctors');
+        const paymentCollection = client.db('parts_manufacturer').collection('payments');
 
 
         const verifyAdmin = async (req, res, next) => {
@@ -226,7 +235,7 @@ run().catch(console.dir);
 
 
 app.get('/', (req, res) => {
-    res.send('Hello From Doctor Uncle! With Ilhan Khondaker ')
+    res.send('Hello From Paint House( assignment 12 ) With Ilhan Khondaker ')
 })
 
 app.listen(port, () => {
